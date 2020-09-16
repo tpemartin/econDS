@@ -1,14 +1,58 @@
+#' 啟動課程設定
+#'
+#' @return
+#' @export
+#'
+#' @examples setup()
 setup <- function(){
-  name=readline("Your name is: ")
-  id=readline("Your school id number is: ")
-  gmail=readline("Your gmail is: ")
+  if(any(grepl(".Rproj$",list.files()))) {
+    if(!file.exists(".Rprofile")){
 
-  '.personalInfo <- list(
-    name=name,
-    id=id,
-    gmail=gmail
+      check_installed_packages()
+
+      name=readline("Your name is: ")
+      id=readline("Your school id number is: ")
+      gmail=readline("Your gmail is: ")
+
+      glue::glue('.personalInfo <- list(
+    name="{name}",
+    id="{id}",
+    gmail="{gmail}"
   )
-  '
+  ') -> .personalInfoLines
 
-  file.edit(".Rprofile")
+      readLines("https://raw.githubusercontent.com/tpemartin/econDS/master/RprofileTemplate.csv") -> .Rprofile
+
+      stringr::str_which(.Rprofile,"# .personalInfo") -> .loc
+
+      .Rprofile =
+        c(.Rprofile[1:.loc],
+          .personalInfoLines,
+          .Rprofile[-c(1:.loc)]
+        )
+
+      writeLines(.Rprofile, ".Rprofile")
+    }
+  } else {
+    warning("Please launch RStudio as a Project. Then rerun `setup()`")
+  }
+
+}
+
+# helpers -----------------------------------------------------------------
+
+
+check_installed_packages <- function(){
+  if(!require("readr")) install.packages("readr")
+  .pklist <- read_csv("https://raw.githubusercontent.com/tpemartin/econDS/master/packagelist.csv")
+  .pklist <- .pklist$pklist
+  .installedPk <- installed.packages()
+  .missingPK <- setdiff(.pklist, .installedPk[,1])
+  if(length(.missingPK)!=0){
+    for(.x in seq_along(.missingPK)){
+      .pk <- .missingPK[[.x]]
+      if(!require(.pk, character.only = T)) install.packages(.pk)
+    }
+  }
+
 }
