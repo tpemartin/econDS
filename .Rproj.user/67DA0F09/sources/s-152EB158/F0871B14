@@ -1,0 +1,25 @@
+{
+    "id": "F0871B14",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1600190965371.0,
+    "source_on_save": false,
+    "relative_order": 10,
+    "properties": {
+        "id": "35e5be6f8a8a4ee681f1e85c6fdaa622",
+        "name": "courseInfo",
+        "title": "courseInfo"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 0,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1600190965371,
+    "read_only": false,
+    "read_only_alternatives": []
+}

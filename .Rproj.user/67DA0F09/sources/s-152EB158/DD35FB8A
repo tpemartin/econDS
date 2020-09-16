@@ -1,0 +1,25 @@
+{
+    "id": "DD35FB8A",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1600191082170.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "id": "121095ed0a2344cc91e1ddb76d99b552",
+        "name": "results",
+        "title": "results"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 140552833206728,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1600191082170,
+    "read_only": false,
+    "read_only_alternatives": []
+}

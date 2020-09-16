@@ -1,0 +1,11 @@
+rmarkdown
+knitr
+rstudioapi
+httr
+lubridate
+stringr
+purrr
+glue
+tidyr
+readr
+dplyr
