@@ -6,7 +6,7 @@
 #' @examples setup()
 setup <- function(){
   if(any(grepl(".Rproj$",list.files()))) {
-    if(!file.exists(".Rprofile")){
+    if(!file.exists(".Rprofile") || RprofileHasOurContext()){
 
       check_installed_packages()
 
@@ -31,6 +31,11 @@ setup <- function(){
           .Rprofile[-c(1:.loc)]
         )
 
+      if(!RprofileHasOurContext()){
+        c(readLines(".Rprofile"),
+          .Rprofile) -> .Rprofile
+      }
+
       writeLines(.Rprofile, ".Rprofile")
     }
   } else {
@@ -40,11 +45,16 @@ setup <- function(){
 }
 
 # helpers -----------------------------------------------------------------
+RprofileHasOurContext <- function(){
+  readLines(con=".Rprofile") -> lines
+  any(stringr::str_detect(lines,"# NTPU-Programming-for-Data-Science
+"))
 
+}
 
 check_installed_packages <- function(){
   if(!require("readr")) install.packages("readr")
-  .pklist <- read_csv("https://raw.githubusercontent.com/tpemartin/econDS/master/packagelist.csv")
+  .pklist <- readr::read_csv("https://raw.githubusercontent.com/tpemartin/econDS/master/packagelist.csv")
   .pklist <- .pklist$pklist
   .installedPk <- installed.packages()
   .missingPK <- setdiff(.pklist, .installedPk[,1])
