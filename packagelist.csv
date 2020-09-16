@@ -1,3 +1,4 @@
+pklist
 rmarkdown
 knitr
 rstudioapi
@@ -9,3 +10,4 @@ glue
 tidyr
 readr
 dplyr
+
