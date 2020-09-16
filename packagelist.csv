@@ -10,4 +10,4 @@ glue
 tidyr
 readr
 dplyr
-
+devtools

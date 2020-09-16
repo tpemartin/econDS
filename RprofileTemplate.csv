@@ -1,0 +1,8 @@
+check_installed_packages()
+# .personalInfo
+
+.date=lubridate::today()
+purrr::map_chr(
+  skeletonRmd, ~{glue::glue(.x, .open="<<", .close=">>")}
+) -> .myRmd
+writeLines(.myRmd, con=paste0(.date,".Rmd"))
