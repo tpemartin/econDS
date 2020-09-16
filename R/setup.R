@@ -32,12 +32,12 @@ setup <- function(){
           .Rprofile[-c(1:.loc)]
         )
 
-      if(!RprofileHasOurContext()){
+      if(file.exists(".Rprofile") && !RprofileHasOurContext()){
         c(readLines(".Rprofile"),
           .Rprofile) -> .Rprofile
       }
 
-      writeLines(.Rprofile, ".Rprofile")
+      writeLines(.Rprofile, con=".Rprofile")
     }
   } else {
     warning("Please launch RStudio as a Project. Then rerun `setup()`")
