@@ -2,12 +2,12 @@ check_installed_packages()
 # .personalInfo
 
 .date=lubridate::today()
+.newRmd <- paste0(.date,".Rmd")
+
 if(!file.exists(.newRmd)){
   purrr::map_chr(
     skeletonRmd, ~{glue::glue(.x, .open="<<", .close=">>")}
   ) -> .myRmd
-  .newRmd <- paste0(.date,".Rmd")
   writeLines(.myRmd, con=.newRmd)
 }
-file.edit(.myRmd)
 file.edit(.newRmd)
