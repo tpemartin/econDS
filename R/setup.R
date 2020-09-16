@@ -6,7 +6,8 @@
 #' @examples setup()
 setup <- function(){
   if(any(grepl(".Rproj$",list.files()))) {
-    if(!file.exists(".Rprofile") || RprofileHasOurContext()){
+    if(!file.exists(".Rprofile") ||
+       !RprofileHasOurContext()){
 
       check_installed_packages()
 
