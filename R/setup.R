@@ -48,8 +48,7 @@ setup <- function(){
 # helpers -----------------------------------------------------------------
 RprofileHasOurContext <- function(){
   readLines(con=".Rprofile") -> lines
-  any(stringr::str_detect(lines,"# NTPU-Programming-for-Data-Science
-"))
+  any(stringr::str_detect(lines,"# NTPU-Programming-for-Data-Science"))
 
 }
 
@@ -66,4 +65,19 @@ check_installed_packages <- function(){
     }
   }
 
+}
+
+hasValidRprofile <- function(){
+  flag1=
+    file.exists(".Rprofile")
+  flag2=
+    (flag1 && RprofileHasOurContext())
+  if(!flag1){
+    warning("Please start RStudio within a project, or run `econDS::setup()`")}
+
+  if(flag1 && !flag2){
+    "Please run `econDS::setup()`"
+  }
+
+  flag2
 }
