@@ -1,4 +1,4 @@
-#' 啟動課程設定
+#' 啟動課程RStudio環境設定
 #'
 #' @return
 #' @export
