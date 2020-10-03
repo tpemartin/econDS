@@ -2,3 +2,4 @@
 
 export(setup)
 export(windowsService)
+export(write_utf8)
