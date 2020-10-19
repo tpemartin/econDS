@@ -1,7 +1,7 @@
 Package: econDS
 Type: Package
 Title: 國立臺北大學資料科學程式設計課程使用
-Version: 0.1.3
+Version: 0.1.4
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
@@ -17,8 +17,12 @@ Imports:
     purrr,
     glue,
     stringr,
+<<<<<<< HEAD
     tidyr,
     lubridate,
     readr,
     rmarkdown
+=======
+    xfun
+>>>>>>> c27c4ce1f49b628c1d7115a51beedf7366e30f29
 RoxygenNote: 7.1.1

@@ -22,7 +22,7 @@ setup <- function(){
   )
   ') -> .personalInfoLines
 
-      readLines("https://raw.githubusercontent.com/tpemartin/econDS/master/RprofileTemplate.csv") -> .Rprofile
+      xfun::read_utf8("https://raw.githubusercontent.com/tpemartin/econDS/master/RprofileTemplate.csv") -> .Rprofile
 
       stringr::str_which(.Rprofile,"# .personalInfo") -> .loc
 
@@ -35,11 +35,11 @@ setup <- function(){
         )
 
       if(file.exists(".Rprofile") && !RprofileHasOurContext()){
-        c(readLines(".Rprofile"),
+        c(xfun::read_utf8(".Rprofile"),
           .Rprofile) -> .Rprofile
       }
 
-      writeLines(.Rprofile, con=".Rprofile")
+      xfun::write_utf8(.Rprofile, con=".Rprofile")
     }
   } else {
     warning("Please launch RStudio as a Project. Then rerun `setup()`")
