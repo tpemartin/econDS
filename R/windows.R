@@ -21,31 +21,46 @@ showConfig <- function(file){
     ruser <- Sys.getenv("R_USER")
     path <- file.path(ruser, file)
     if(!file.exists(path)) path <- file.path(R.home(), "etc", file)
-    file.show(path, header = path)
+    path #file.show(path, header = path)
 }
 
 get_RconsolePath <- function(){
   showConfig("Rconsole")
 }
-
-set_RconsoleLanguage2English <- function(){
-  path = get_RconsolePath()
-  readLines(path) -> lines_ -> lines0
-  paste0(path,"_backup") -> path_backup
-  writeLines(lines_, con=path_backup)
-  message("Original Rconsole is backuped at: \n", path_backup)
+edit_Rconsole <- function(RconsoleLines){
+  RconsoleLines  -> lines0
   stringr::str_remove_all(lines0,"\\s")-> lines0
   stringr::str_which(lines0,
                      stringr::regex("^language=", ignore_case=T))-> whichLineSetsLanguage
   if(length(whichLineSetsLanguage)==0){
-    c(lines_,
+    c(RconsoleLines,
       "LANGUAGE=en",
-      "")-> lines_
+      "")-> RconsoleLines
   } else {
-    lines_[[whichLineSetsLanguage]] <- "LANGUAGE=en"
+    RconsoleLines[[whichLineSetsLanguage]] <- "LANGUAGE=en"
   }
+  RconsoleLines
+}
+# readLines(showConfig("Rconsole")) %>%
+#   edit_Rconsole() -> newRconsole
+# writeLines(newRconsole, con="new filename")
+# utils::loadRconsole("new filename")
+
+set_RconsoleLanguage2English <- function(){
+  path = get_RconsolePath()
+  readLines(path) -> lines_
+  path_backup <- "Rconsole_backup"
+  con1 <- file(path_backup, "w")
+  writeLines(lines_, con=con1)
+  close(con1)
+  message("Original Rconsole is backuped at: \n", path_backup)
+
+  edit_Rconsole(lines_) -> lines_
+
+  con2 = file(path, "w")
   writeLines(
-    lines_, con=path
+    lines_, con=con2
   )
+  close(con2)
   message("Finish setup. Please restart R session.")
 }

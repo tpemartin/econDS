@@ -27,9 +27,11 @@ setup <- function(){
       stringr::str_which(.Rprofile,"# .personalInfo") -> .loc
 
       .Rprofile =
-        c(.Rprofile[1:.loc],
+        c("# -------設定開始-------",
+          .Rprofile[1:.loc],
           .personalInfoLines,
-          .Rprofile[-c(1:.loc)]
+          .Rprofile[-c(1:.loc)],
+          "# -------設定結束-------"
         )
 
       if(file.exists(".Rprofile") && !RprofileHasOurContext()){
