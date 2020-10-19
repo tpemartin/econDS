@@ -20,6 +20,6 @@ Imports:
     tidyr,
     lubridate,
     readr,
-    rmarkdown
+    rmarkdown,
     xfun
 RoxygenNote: 7.1.1
