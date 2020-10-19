@@ -17,12 +17,9 @@ Imports:
     purrr,
     glue,
     stringr,
-<<<<<<< HEAD
     tidyr,
     lubridate,
     readr,
     rmarkdown
-=======
     xfun
->>>>>>> c27c4ce1f49b628c1d7115a51beedf7366e30f29
 RoxygenNote: 7.1.1
