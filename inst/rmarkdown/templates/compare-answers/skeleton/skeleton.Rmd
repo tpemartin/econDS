@@ -1,0 +1,41 @@
+---
+title: "對答案"
+output: output_format
+---
+
+先執行以下兩行： 
+```{r setup, include=FALSE}
+library(econDS)
+ans <- new.env()
+```
+
+
+你的答案
+```{r}
+aDate <- c("2010-01-01", "2020-01-01")
+aDate
+```
+
+正確解答: 放在以下{}裡面：
+
+```
+{
+
+} %at% ans
+```
+
+如：
+```{r}
+{
+library(lubridate)
+aDate <- ymd(c("2010-01-01", "2020-01-01"))
+aDate
+} %at% ans
+```
+
+要比對時：
+```{r}
+typeof(aDate) # 你的答案
+typeof(ans$aDate) # 正確答案
+```
+
